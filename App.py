@@ -34,7 +34,7 @@ def authenticate(role):
                     if data[1] == username and data[2] == password:
                         return True, data[0]  # return correct account number
     except FileNotFoundError:
-        print(f"{role.capitalize()} file not found.")
+        print("Admin file not found.")
     print("Invalid credentials.")
     return False, None
 
@@ -75,7 +75,8 @@ def create_account():
     with open(trans_file, "a") as file:
         file.write(f"{acc_no},Deposit   ,{initial_balance},{get_time()}\n")
 
-    print(f"Account created successfully! Account Number: {acc_no}")
+    print("Account created successfully!")
+    print(f"Account Number: {acc_no}")
 
 # Deposit
 def deposit_money(user_acc):
@@ -217,9 +218,9 @@ def view_transactions(user_acc):
 
 # ---------------- MENUS ----------------
 
-def admin_menu():
+def admin_menu(admin):
     while True:
-        print("\n=== Admin Menu ===")
+        print(f"\n===Welcome {admin} to the Admin Menu ===")
         print("1. Create Account")
         print("2. Deposit Money")
         print("3. Check Balance")
@@ -292,9 +293,9 @@ def main():
         print("3. Exit")
         role = input("Enter your choice: ")
         if role == '1':
-            success, _ = authenticate("admin")
+            success, admin_name = authenticate("admin")
             if success:
-                admin_menu()
+                admin_menu(admin_name)
         elif role == '2':
             success, acc_no = authenticate("user")
             if success:
