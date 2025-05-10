@@ -101,7 +101,7 @@ def deposit_money(user_acc):
         with open(acc_file, "w") as file:
             file.writelines(new_data)
         with open(trans_file, "a") as t_file:
-            t_file.write(f"{user_acc},Deposit   ,{amount},{get_time()}\n")
+            t_file.write(f"{user_acc},Deposit    ,{amount},{get_time()}\n")
         print("Deposit successful.")
     else:
         print("Account not found.")
